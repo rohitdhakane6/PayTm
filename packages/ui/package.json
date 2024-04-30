@@ -6,6 +6,9 @@
     "./button": "./src/button.tsx",
     "./appbar": "./src/appbar.tsx",
     "./card": "./src/card.tsx",
+    "./center": "./src/Center.tsx",
+    "./select": "./src/Select.tsx",
+    "./textInput": "./src/TextInput.tsx",
     "./code": "./src/code.tsx"
   },
   "scripts": {
