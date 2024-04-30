@@ -9,7 +9,6 @@ export const authOptions = {
           credentials: {
             phone: { label: "Phone number", type: "text", placeholder: "1231231231" },
             password: { label: "Password", type: "password" },
-            otp: { label: "OTP", type: "text", placeholder: "Enter OTP" } // Add OTP field
         },
           // TODO: User credentials type from next-auth
           async authorize(credentials: any) {
