@@ -7,11 +7,12 @@ export default function Layout({
 }): JSX.Element {
   return (
     <div className="flex">
-        <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
+        <div className="md:w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
             <div>
                 <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
                 <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
                 <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
+                <SidebarItem href={"/P2PTransfer"} icon={<P2PTransferIcon/>} title="P2P Transfer"/>
             </div>
         </div>
             {children}
@@ -43,3 +44,9 @@ function TransactionsIcon() {
         </svg>
     );
 }
+
+function P2PTransferIcon() {
+    return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+    </svg>
+  }

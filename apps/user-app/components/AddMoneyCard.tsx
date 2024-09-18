@@ -4,17 +4,17 @@ import { Button } from "@repo/ui/button";
 import { Card } from "@repo/ui/card";
 import { Select } from "@repo/ui/select";
 import { TextInput } from "@repo/ui/textInput";
-import { createOnrampTransaction } from "../app/api/auth/actions/createOnrampTransaction";
+import { createOnrampTransaction } from "../app/lib/actions/createOnrampTransaction";
 
 // Supported banks data
 const SUPPORTED_BANKS = [
-  { name: "HDFC Bank", redirectUrl: "https://netbanking.hdfcbank.com" },
+  { name: "HDFC Bank", redirectUrl: "http://localhost:3003/hdfcWebhook" },
   { name: "Axis Bank", redirectUrl: "https://www.axisbank.com/" }
 ];
 
 const AddMoney = () => {
   // State initialization
-  const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
+  const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl ||"");
   const [amount, setAmount] = useState(0);
   const [selectedBank, setSelectedBank] = useState(SUPPORTED_BANKS[0]?.name || "");
 
@@ -30,7 +30,9 @@ const AddMoney = () => {
   };
 
   const handleAddMoney = async () => {
-    await createOnrampTransaction(amount*100, selectedBank);
+    const res=await createOnrampTransaction(amount*100, selectedBank,redirectUrl);
+    window.location.href=res.url ||"";
+    
   };
 
   return (

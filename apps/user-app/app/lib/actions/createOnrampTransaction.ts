@@ -1,10 +1,10 @@
 "use server";
 
 import prisma from "@repo/db/client";
-import { authOptions } from "../../../lib/auth";
+import { authOptions } from "../auth";
 import { getServerSession } from "next-auth";
 
-export async function createOnrampTransaction(amount:number,provider:string){
+export async function createOnrampTransaction(amount:number,provider:string,redirectUrl:string){
     const session = await getServerSession(authOptions);
     if (!session?.user || !session.user?.id) {
         return {
@@ -16,12 +16,14 @@ export async function createOnrampTransaction(amount:number,provider:string){
         data:{
             provider,
             startTime:new Date(),
-            token,
+            token, 
             amount,
             status: "Processing",
             userId: Number(session?.user?.id),
         }
 
     })
-
+    return{
+        url:`${redirectUrl}/${token}/${session.user?.id}`
+    }
 }
